@@ -6,10 +6,7 @@ return {
     keys = {
       { "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle rendered markdown" },
     },
-    opts = {
-      render_modes = { "n", "c" },
-      anti_conceal = { enabled = true },
-    },
+    opts = {},
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -24,3 +21,4 @@ return {
     end,
   },
 }
+
