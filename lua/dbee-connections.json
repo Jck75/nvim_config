@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Databricks Prod",
+    "type": "databricks",
+    "url": "token:TOKEN@directsupply-databricks.cloud.databricks.com:443/sql/protocolv1/o/0/1a5189339b1ae039?catalog=hive_metastore"
+  }
+]
