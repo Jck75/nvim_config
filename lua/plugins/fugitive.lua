@@ -4,7 +4,7 @@ return {
     dependencies = { "tpope/vim-rhubarb" },
     keys = {
       { "<leader>gs", "<cmd>Git<cr>", desc = "Git status" },
-      { "<leader>gm", "<cmd>Git commit<cr>", desc = "Git commit" },
+      { "<leader>gm", "<cmd>Git commit<cr>Go", desc = "Git commit" },
       { "<leader>ga", "<cmd>Git add %<cr>", desc = "Git add current file" },
       { "<leader>gA", "<cmd>Git add -A<cr>", desc = "Git add all" },
       { "<leader>gp", "<cmd>Git push<cr>", desc = "Git push" },

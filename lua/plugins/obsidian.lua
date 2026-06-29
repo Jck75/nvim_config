@@ -23,18 +23,15 @@ return {
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
+    -- Add your own workspaces here
     workspaces = {
-      {
-        name = "personal",
-        path = "C:\\Users\\jerecok\\vaults\\personal",
-      },
       {
         name = "work",
         path = "C:\\Users\\jerecok\\vaults\\work",
       },
       {
-        name = "school",
-        path = "C:\\Users\\jerecok\\vaults\\school",
+        name = "todo",
+        path = "C:\\Users\\jerecok\\vaults\\todo_list",
       },
     },
     daily_notes = {

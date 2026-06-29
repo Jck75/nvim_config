@@ -12,8 +12,7 @@
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.yaml",
-    "lazyvim.plugins.extras.util.mini-hipatterns"
+    "lazyvim.plugins.extras.lang.yaml"
   ],
   "install_version": 8,
   "news": {
