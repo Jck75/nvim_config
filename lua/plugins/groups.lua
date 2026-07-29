@@ -4,7 +4,7 @@ return {
     spec = {
       { "<leader>g", group = "git" },
       { "<leader>a", group = "AI/Claude" },
-      -- add more groups here
+      { "<leader>o", group = "obsidian/notes" },
     },
   },
 }
