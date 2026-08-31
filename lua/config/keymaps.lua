@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader>fc", function()
   LazyVim.pick("files", { cwd = config_dir })()
 end, { desc = "Find Config File" })
 
-vim.keymap.set("n", "<leader>as", function()
+vim.keymap.set("n", "<leader>fa", function()
   local claude_dir = home_dir .. "/.claude"
   if is_in_home() then
     vim.cmd("lcd " .. vim.fn.fnameescape(claude_dir))
@@ -51,3 +51,44 @@ vim.keymap.set("n", "<leader>cr", function()
   end
   Snacks.terminal("uv run " .. vim.fn.shellescape(file))
 end, { desc = "Run file with uv" })
+
+-- Run current AHK file
+vim.keymap.set("n", "<leader>ckr", function()
+  local file = vim.fn.expand("%:p")
+  if file == "" then
+    vim.notify("No file in current buffer", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.jobstart({ "autohotkey", file }, { detach = true })
+  vim.notify("Running AHK: " .. vim.fn.expand("%:t"), vim.log.levels.INFO)
+end, { desc = "Run AHK file" })
+
+-- Create startup shortcut for current AHK file
+vim.keymap.set("n", "<leader>cks", function()
+  local file = vim.fn.expand("%:p")
+  if file == "" then
+    vim.notify("No file in current buffer", vim.log.levels.WARN)
+    return
+  end
+  local name = vim.fn.expand("%:t:r")
+  local startup_dir = vim.fn.expand("~/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup")
+  local shortcut_path = startup_dir .. "/" .. name .. ".lnk"
+  local ps_cmd = string.format(
+    '$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut("%s"); $s.TargetPath = "%s"; $s.Save()',
+    shortcut_path:gsub("/", "\\"),
+    file:gsub("/", "\\")
+  )
+  vim.fn.jobstart({ "powershell", "-Command", ps_cmd }, {
+    on_exit = function(_, code)
+      if code == 0 then
+        vim.schedule(function()
+          vim.notify("Startup shortcut created: " .. name .. ".lnk", vim.log.levels.INFO)
+        end)
+      else
+        vim.schedule(function()
+          vim.notify("Failed to create shortcut", vim.log.levels.ERROR)
+        end)
+      end
+    end,
+  })
+end, { desc = "Add AHK to startup" })
